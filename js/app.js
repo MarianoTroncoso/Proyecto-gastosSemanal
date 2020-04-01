@@ -19,6 +19,18 @@ class Presupuesto{
     }
 }
 
+// Maneja todo lo relacionado al HTML
+class Interfaz{
+    insertarPresupuesto(cantidad){
+        const presupuestoSpan = document.querySelector('span#total');
+        const restanteSpan = document.querySelector('span#restante');
+
+        // inserta al html
+        presupuestoSpan.innerHTML = `${cantidad}`;
+        restanteSpan.innerHTML = `${cantidad}`;
+    }
+}
+
 
 // Event Listeners
 
@@ -30,6 +42,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
         // instanciar un presupuesto
         cantidadPresupuesto = new Presupuesto(presupuestoUsuario);
-        console.log(cantidadPresupuesto);
+        
+        // instanciar interfaz
+        const ui = new Interfaz();
+        ui.insertarPresupuesto(cantidadPresupuesto.presupuesto);
     }
 })
