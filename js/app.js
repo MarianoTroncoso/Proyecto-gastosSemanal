@@ -37,7 +37,7 @@ class Interfaz{
         if(tipo === 'error'){
             divMensaje.classList.add('alert-danger');
         } else {
-            ivMensaje.classList.add('alert-success');
+            divMensaje.classList.add('alert-success');
         }
         divMensaje.appendChild(document.createTextNode(mensaje));
 
@@ -49,6 +49,25 @@ class Interfaz{
             document.querySelector('.primario .alert').remove();
             formulario.reset();
         }, 3000)
+    }
+
+    // inserta los gastos a la lista
+    agregarGastoListado(nombre, cantidad){
+        const gastosListados = document.querySelector('#gastos ul');
+
+        //crear li
+        const li = document.createElement('li');
+        li.className = 'list-group-item d-flex justify-content-between aling-items-center';
+        
+        // insertar gastos
+        li.innerHTML = `
+            ${nombre}
+            <span class="badge badge-primary badge-pill">$ ${cantidad}</span>
+            
+        `;
+
+        // insertar al HTML
+        gastosListados.appendChild(li);
     }
 }
 
@@ -87,7 +106,9 @@ formulario.addEventListener('submit', function(e){
         // 2 parametros: mensaje y tipo
         ui.imprimirMensaje('Hubo un error', 'error');
     }else{
-        console.log('gasto se agrego');
+        // insertar en html
+        ui.imprimirMensaje('Correcto', 'correcto');
+        ui.agregarGastoListado(nombreGasto, cantidadGasto);
     }
 
 });
