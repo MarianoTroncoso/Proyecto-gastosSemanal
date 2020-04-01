@@ -63,11 +63,19 @@ class Interfaz{
         li.innerHTML = `
             ${nombre}
             <span class="badge badge-primary badge-pill">$ ${cantidad}</span>
-            
         `;
 
         // insertar al HTML
         gastosListados.appendChild(li);
+    }
+
+    // comprueba el presupuesto restante
+    presupuestoRestante(cantidad){
+        const restante = document.querySelector('span#restante');
+        // leemos el presupuestos restante
+        const presupuestoRestanteUsuario =  cantidadPresupuesto.presupuestoRestante(cantidad);
+        
+        restante.innerHTML = `${presupuestoRestanteUsuario}`
     }
 }
 
@@ -109,6 +117,7 @@ formulario.addEventListener('submit', function(e){
         // insertar en html
         ui.imprimirMensaje('Correcto', 'correcto');
         ui.agregarGastoListado(nombreGasto, cantidadGasto);
+        ui.presupuestoRestante(cantidadGasto);
     }
 
 });
